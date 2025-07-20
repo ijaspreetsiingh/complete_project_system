@@ -24,18 +24,22 @@ import Layout from './components/layout/Layout';
 import Faq_01 from './pages/common/faq/faq_01/Faq_01';
 import Dashboard from "./dashboard/dashboard/MainLayout";
 import Portfolio1 from './portfolio/';
+import MainLayout from "./dashboard/dashboard/MainLayout";
+import Portfolio_page from "./dashboard/dashboard/portfolio/funnel1/portfolioedit"
 function App() {
-  // Init JOS Animation
+  // Init JOS Animationa
   useJOSAnimation();
 
   return (
     <Routes>
       {/* Routes without Layout (like dashboard) */}
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/*" element={<Dashboard />} />
+       {/* <Route path="funnel_edit/:id/:stageId" element={<Portfolio_page />} /> */}
        <Route path="/:id" element={<Portfolio1 />} />
       {/* Routes with Layout */}
       <Route element={<Layout />}>
         <Route path="/" element={<Home_01 />} />
+          <Route path="/*" element={<MainLayout />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="about" element={<About />} />

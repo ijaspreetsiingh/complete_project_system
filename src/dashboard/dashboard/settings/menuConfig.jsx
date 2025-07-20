@@ -14,5 +14,4 @@ export const menuStructure = [
     { name: 'dash-ecommerce', label: 'Portfolio', icon: '🛒', parent: 'Dashboards', type: 'item', path: 'Portfolio' },
     { name: 'dash-projects', label: 'Team', icon: '🛠️', parent: 'Dashboards', type: 'item', path: 'team' },
     { name: 'dash-online-courses', label: 'Whatsapp/mail Setup', icon: '📚', parent: 'Dashboards', type: 'item', path: 'online-courses' },
-    // ... baki menu items ...
   ];

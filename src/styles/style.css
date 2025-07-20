@@ -24,7 +24,14 @@ h6 {
   font-family: DM Sans, sans-serif;
   letter-spacing: -2px;
 }
-
+.swal-button{
+  background-color: rgb(234 88 12 / 1);
+  color: white;
+}
+/* Example of higher specificity, usually not needed */
+.swal-overlay .swal-button:hover {
+  background-color: rgb(200 70 10 / 1) !important; /* Force the color change */
+}
 h1 {
   font-size: 3rem;
   line-height: 1;

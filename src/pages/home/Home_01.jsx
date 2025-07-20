@@ -14,7 +14,9 @@ const Home_01 = () => {
       <Content_01 />
       <Content_02 />
       <FunFact />
-      <Pricing />
+        <div id="pricing">
+        <Pricing />
+      </div>
       <Testimonial_Section />
 
       {/* Body Background Shape 1 */}

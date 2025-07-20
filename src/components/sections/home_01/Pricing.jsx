@@ -269,6 +269,8 @@
 // };
 
 // export default Pricing;
+
+
 import { Link, useNavigate } from 'react-router-dom';
 import useTabs from '../../../hooks/useTabs';
 import { useDispatch } from 'react-redux';
@@ -281,15 +283,21 @@ const Pricing = () => {
 
   const handlePlanSelection = (plan) => {
     // Dispatch the selected plan to Redux
-    dispatch(selectPlan(plan));
+        const planWithId = {
+        ...plan,
+        id: `${plan.name.toLowerCase()}-${plan.type}` // e.g. "beginner-monthly"
+    };
+    dispatch(selectPlan(planWithId));
     // Redirect to signup page
-    navigate('/signup');
+    navigate('/signup', { state: { plan: planWithId } });
   };
 
   return (
     <>
       {/*...::: Pricing Section Start :::... */}
-      <section className='pricing-section'>
+   
+<section className='pricing-section' id="pricing">
+     
         {/* Section Spacer */}
         <div className='pb-20 pt-20 xl:pb-[150px] xl:pt-[130px]'>
           {/* Section Container */}

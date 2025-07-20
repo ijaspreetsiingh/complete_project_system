@@ -1,0 +1,46 @@
+{
+  "funnel": {
+    "slug": "funnel-slug",
+    "name": "Funnel Name",
+    "stages": [
+      {
+        "pageId": "thankyou-page",
+        "name": "Thank You Page",
+        "type": "thankyou-page",
+        "selectedTemplateKey": "template1", // or templateType
+        "html": "<h1>Thank You!</h1><p>Your submission was successful.</p>",
+        "css": "body { background-color: #e0ffe0; }",
+        "js": "",
+        "assets": [],
+        "basicInfo": {
+          "title": "Thank You Page",
+          "description": "Thank you for visiting!",
+          "favicon": null,
+          "keywords": "thank you, confirmation",
+          "socialTitle": "Thanks!",
+          "socialImage": null,
+          "socialDescription": "Appreciation for taking action"
+        }
+      },
+      {
+        "pageId": "custom-page-1",
+        "name": "Custom Page",
+        "type": "custom-page",
+        "selectedTemplateKey": "custom-template1",
+        "html": "<h1>Custom Page</h1><p>Custom content here.</p>",
+        "css": "body { background-color: #f0f0f0; }",
+        "js": "console.log('custom script')",
+        "assets": [],
+        "basicInfo": {
+          "title": "Custom Page",
+          "description": "This is a custom page",
+          "favicon": null,
+          "keywords": "custom, page",
+          "socialTitle": "Custom Page",
+          "socialImage": null,
+          "socialDescription": "Custom page description"
+        }
+      }
+    ]
+  }
+}

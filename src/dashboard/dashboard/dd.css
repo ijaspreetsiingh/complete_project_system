@@ -3,41 +3,63 @@
 
 :root {
   /* Base Colors - Enhanced Black Theme */
-  --bg-color: #0a0a0a; /* Slightly softer than pure black */
-  --text-color: #ffffff; /* Soft white for better readability */
-  --card-bg: #121212; /* Dark gray for cards */
-  --border-color: #2a2a2a; /* Darker borders */
-  --sidebar-width: 280px;
-  
-  /* Accent Colors - Vibrant but not overpowering */
-  --primary-color: #ffac4d; /* Deep purple */
-  --secondary-color: #00bcd4; /* Cyan */
-  --success-color: #4caf50; /* Green */
-  --warning-color: #ff9800; /* Amber */
-  --danger-color: #f44336; /* Red */
-  --info-color: #2196f3; /* Blue */
-   --color-text :#ffffff  ;
-  /* Special Effects */
-  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --hover-effect: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --bg-color: #0a0a0a; /* Overall page background */
+  --text-color: #e0e0e0; /* Default text color (slightly off-white) */
+  --sidebar-bg: #000000; /* Sidebar background - PURE BLACK as per image */
+  --sidebar-text-color: #ffffff; /* Text color for sidebar items */
+  --sidebar-icon-color: #ffffff; /* Icon color for sidebar items */
+  --sidebar-active-bg: #2D2D2D; /* Background for active sidebar item (dark gray) */
+  --sidebar-active-text-color: #ffffff; /* Text color for active sidebar item */
+  --sidebar-hover-bg: #1a1a1a; /* Background for sidebar item on hover */
+  --sidebar-separator-color: #333333; /* Color for separators in sidebar */
+  --logo-funnels-color: #D6C2F5; /* Approx. light purple/pink for "Funnels" part of logo */
+  --logo-eye-color: #ffffff; /* White for "Eye" part of logo */
+
+  --card-bg: #121212; /* Dark gray for cards (used elsewhere) */
+  --border-color: #2a2a2a; /* Darker borders (used elsewhere) */
+  --sidebar-width: 260px; /* Adjusted width if needed */
+
+  /* Accent Colors - Vibrant but not overpowering (primarily for other UI elements) */
+  --primary-color: #ffac4d; /* Deep purple (original, can be changed if not used for sidebar) */
+  /* ... other color variables ... */
+  --color-text: #ffffff; /* General text variable, ensure consistency */
+}
+* { /* Note: Corrected from '##' to '*' */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
 .light {
-
-
   --bg-color:  rgb(243, 244, 246);
   --text-color: #0a0a0a;
+  --text-color-rgb: 10, 10, 10; /* Naya: Light mode text color ka RGB */
   --card-bg: white;
-  --border-color: #545658;
+  --border-color: #e2e8f0; /* Thoda halka border color light mode ke liye */
   --sidebar-bg: #ffffff;
-  --color-text :#0a0a0a;
-  /* Light mode accent colors */
-  --primary-color: #0a0a0a;
-  --secondary-color: #018786;
-  --success-color: #388e3c;
-  --warning-color: #ffa000;
+  --sidebar-text-color: #333333; /* Light mode sidebar text */
+  --sidebar-hover-bg: #f0f0f0; /* Light mode hover */
+  --sidebar-active-bg: #e0e7ff; /* Light mode active */
+  --sidebar-active-text-color: #3730a3; /* Light mode active text */
+
+  /* Dhyaan Dein: Light mode mein primary color ko consistent rakhna behtar hota hai.
+     Aapke dd.css mein .light --primary-color: #0a0a0a; (black) tha.
+     Agar aap ek vibrant primary color chahte hain light mode mein bhi, toh use yahaan define karein.
+     Example ke liye main ek alag light mode primary color le raha hoon.
+     Aap ise #ffac4d (original) ya koi aur value set kar sakte hain.
+  */
+  --primary-color: #7c3aed; /* Example: Light mode primary (purple) */
+  --primary-color-rgb: 124, 58, 237; /* Naya: Light mode primary ka RGB */
   --danger-color: #d32f2f;
-  --info-color: #1976d2;
+  --danger-color-rgb: 211, 47, 47;
+  --success-color: #388e3c;
+  /* ... baaki light mode variables ... */
 }
 
 /* Base Styles */
@@ -66,41 +88,47 @@ body {
 /* Sidebar Styles */
 .sidebar {
   width: var(--sidebar-width);
-  background: var(--card-bg);
-  border-right: 1px solid var(--border-color);
+  background: var(--sidebar-bg); /* Use specific sidebar background */
+  /* border-right: 1px solid var(--border-color); */ /* Image doesn't show a right border on the sidebar itself */
   display: flex;
   flex-direction: column;
   z-index: 100;
-  padding: 20px 0;
+  padding: 20px 0; /* Vertical padding, horizontal handled by items */
   position: fixed;
   height: 100vh;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   transform: translateX(0);
-  box-shadow: var(--card-shadow);
+  /* box-shadow: var(--card-shadow); */ /* Image doesn't show prominent shadow for sidebar */
 }
+
 
 .sidebar:not(.open) {
-  transform: translateX(-100%);
+  transform: translateX(-100%); /* Corrected to hide to the left */
 }
-
 .sidebar-header {
-  padding: 0 20px 20px;
+  padding: 0 20px 20px; /* Padding for logo area */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Align logo to the start */
   align-items: center;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 10px;
+  /* border-bottom: 1px solid var(--sidebar-separator-color); */ /* Separator below logo if needed, image implies it's part of menu separators */
+  margin-bottom: 10px; /* Space before first menu item or separator */
 }
 
 .logo {
-  font-size: 22px;
+  font-size: 24px; /* Adjust as needed */
   font-weight: 700;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.5px;
+  display: flex; /* For multi-part logo styling */
 }
 
-.logo span {
-  color: var(--primary-color);
-  font-weight: 800;
+.logo .logo-funnels {
+  color: var(--logo-funnels-color);
+  /* font-weight: specific if needed */
+}
+
+.logo .logo-eye {
+  color: var(--logo-eye-color);
+  /* font-weight: specific if needed */
 }
 
 .theme-toggle {
@@ -122,47 +150,99 @@ body {
   background: rgba(var(--primary-color), 0.1);
   color: var(--primary-color);
 }
-
+.sidebar-container {
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  height: 100%; /* Ensure it takes full height of its parent */
+  justify-content: space-between; /* Distribute space: header/menu at top, settings at bottom */
+}
+.settings-button-container {
+  /* This would wrap your settings button */
+  margin-top: auto; /* Pushes this item to the bottom when flex-direction is column */
+  padding: 15px; /* Add some padding if needed */
+  border-top: 1px solid var(--sidebar-border-color); /* Optional: add a separator */
+}
 .sidebar-menu {
-  padding: 20px 0;
+  padding: 0; /* Remove default padding if items handle it */
   flex-grow: 1;
   overflow-y: auto;
+  /* Basic scrollbar styling (optional) */
 }
+.sidebar-menu::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background-color: var(--sidebar-separator-color);
+  border-radius: 2px;
+}
+.sidebar-menu::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+
+.menu-separator {
+  height: 1px;
+  background-color: var(--sidebar-separator-color);
+  margin: 10px 20px; /* Vertical and horizontal margin for separator */
+}
+
+.menu-separator.menu-separator-bottom {
+  margin-top: auto; /* Pushes the separator and items below it to the bottom */
+}
+
 
 .menu-item {
   display: flex;
   align-items: center;
-  width: calc(100% - 20px);
-  padding: 12px 20px;
-  margin: 5px 10px;
+  width: 100%; /* Full width by default */
+  padding: 12px 20px; /* Padding for non-active items */
   background: transparent;
   border: none;
-  color: rgba(var(--text-color), 0.7);
+  color: var(--sidebar-text-color);
   text-align: left;
   cursor: pointer;
-  gap: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  gap: 15px; /* Gap between icon and text */
+  font-size: 15px; /* Adjust as per image */
+  font-weight: 400; /* Non-active item font weight */
+  border-radius: 0; /* No border radius for non-active items */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative; /* For active indicator positioning */
 }
 
 .menu-item:hover {
-  background: rgba(var(--primary-color), 0.1);
-  color: var(--primary-color);
+  background: var(--sidebar-hover-bg);
+  color: var(--sidebar-active-text-color); /* Or a slightly different hover text color */
 }
 
 .menu-item.active {
-  background: rgba(var(--primary-color), 0.2);
-  color: var(--primary-color);
-  font-weight: 600;
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text-color);
+  font-weight: 500; /* Bolder for active item */
+  border-radius: 8px; /* Rounded corners for active item */
+ 
+  width: calc(100% - 20px); /* Adjust width due to margin */
+  padding: 12px 15px; /* Adjust padding if margin changes effective content area */
 }
 
 .menu-icon {
-  font-size: 18px;
-  width: 24px;
+  font-size: 18px; /* Adjust icon size */
+  width: 24px; /* Fixed width for icon container */
   text-align: center;
+  color: var(--sidebar-icon-color); /* Ensure icon color is consistent */
+  flex-shrink: 0; /* Prevent icon from shrinking */
 }
+
+
+.menu-item.active .menu-icon {
+  color: var(--sidebar-active-text-color); /* Icon color for active item */
+}
+
+.active-indicator {
+  margin-left: auto; /* Pushes the ">" to the right */
+  font-size: 1em; /* Adjust size of ">" */
+  color: var(--sidebar-active-text-color);
+}
+
 
 .sidebar-footer {
   padding: 20px;
@@ -217,154 +297,294 @@ body {
   margin-left: 0;
 }
 
+
 .top-nav {
+  background-color: var(--card-bg);
+  /* border-bottom: 1px solid var(--border-color); */ /* Border ke bajaye shadow ka istemal */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* Subtle, modern shadow */
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  background: var(--card-bg);
-  border-bottom: 1px solid var(--border-color);
+  padding: 0 24px; /* Horizontal padding badhaya gaya */
+  height: 64px; /* Thodi height badhayi gayi */
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100; /* Baaki content se upar, lekin modal se neeche */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.light .top-nav {
+  /* Light mode mein shadow thoda alag dikh sakta hai, adjust karein agar zaroorat ho */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
 }
 
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.menu-toggle {
-  background: transparent;
-  border: none;
-  color: var(--text-color);
-  font-size: 20px;
-  cursor: pointer;
-  display: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.menu-toggle:hover {
-  background: rgba(var(--primary-color), 0.1);
-  color: var(--primary-color);
+  gap: 16px; /* Menu toggle aur title ke beech space */
 }
 
 .page-title {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.date-picker input {
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: rgba(var(--text-color), 0.05);
   color: var(--text-color);
-  font-size: 14px;
+  font-size: 1.125rem; /* 18px, pehle 1.15rem tha */
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-.search-bar {
-  position: relative;
-}
-
-.search-bar input {
-  padding: 10px 15px 10px 35px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: rgba(var(--text-color), 0.05);
+/* Menu Toggle (Hamburger) Button */
+.menu-toggle-btn {
+  background-color: transparent;
   color: var(--text-color);
-  width: 200px;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.search-bar input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(var(--primary-color), 0.1);
-}
-
-.search-icon {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  color: rgba(var(--text-color), 0.5);
-}
-
-.notification-btn {
-  position: relative;
-  background: transparent;
   border: none;
-  color: rgba(var(--text-color), 0.7);
-  font-size: 18px;
+  padding: 8px;
+  border-radius: 50%;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.menu-toggle-btn:hover {
+  background-color: rgba(var(--text-color-rgb), 0.08);
+}
+.menu-toggle-btn svg {
+  width: 22px;
+  height: 22px;
 }
 
-.notification-btn:hover {
-  background: rgba(var(--primary-color), 0.1);
-  color: var(--primary-color);
+/* Topbar Menu (agar topNavMenuType === 'topbar') */
+.topbar-menu {
+  display: flex;
+  gap: 4px; /* Items ke beech thoda kam gap */
+  align-items: center;
+  overflow-x: auto;
+  flex-grow: 1;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.topbar-menu-button {
+  background: transparent;
+  border: none;
+  color: var(--text-color); /* Default text color ka istemal */
+  opacity: 0.75; /* Thoda halka inactive state ke liye */
+  padding: 8px 12px; /* Thoda compact padding */
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: 6px;
+  font-size: 0.875rem; /* 14px */
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Icon aur text ke beech space */
+}
+.topbar-menu-button:hover {
+  background-color: var(--sidebar-hover-bg);
+  color: var(--text-color); /* Hover par text color wahi rahega ya primary? */
+  opacity: 1;
+}
+.topbar-menu-button.active {
+  background-color: var(--primary-color);
+  color: white; /* Primary color ke upar white text */
+  font-weight: 600;
+  opacity: 1;
+}
+.topbar-menu-button.active svg {
+  color: white;
+}
+.light .topbar-menu-button {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+.light .topbar-menu-button:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+    opacity: 1;
+}
+.light .topbar-menu-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    opacity: 1;
+}
+
+
+/* Nav Actions (Right side ke buttons) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Buttons ke beech thoda kam gap */
+  margin-left: auto; /* Right mein push karne ke liye */
+}
+
+.nav-action-btn {
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  padding: 0; /* Padding icon ke size se control hogi */
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Consistent size */
+  height: 40px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative; /* Notification badge ke liye */
+}
+.nav-action-btn:hover {
+  background-color: rgba(var(--text-color-rgb), 0.08);
+}
+.nav-action-btn svg {
+  width: 20px; /* Icon size */
+  height: 20px;
+  opacity: 0.75; /* Icons thode subtle */
+  transition: opacity 0.2s ease;
+}
+.nav-action-btn:hover svg {
+    opacity: 1;
 }
 
 .notification-badge {
   position: absolute;
-  top: -2px;
-  right: -2px;
-  background: var(--danger-color);
+  top: 7px; /* Naye button size ke anusaar adjust karein */
+  right: 7px;
+  background-color: var(--danger-color);
   color: white;
-  width: 18px;
-  height: 18px;
+  width: 16px; /* Chhota badge */
+  height: 16px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 9px; /* Chhota font */
   font-weight: 600;
+  border: 2px solid var(--card-bg); /* Achha separation deta hai */
 }
 
-.add-lead-btn {
-  background: white;
-  color: var(--bg-color); /* Changed from black to white for better contrast */
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+/* User Avatar aur Dropdown */
+.user-avatar-container {
+  position: relative;
+}
+
+.user-avatar-button {
+  width: 36px; /* Thoda chhota avatar button */
+  height: 36px;
+  border-radius: 50%;
+  color: white; /* Initials ke liye */
+  background-color: var(--primary-color); /* Fallback background agar image na ho */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
+  font-size: 0.875rem; /* Initials ka font size */
   cursor: pointer;
-  transition: all 0.2s ease;
+  border: 2px solid transparent; /* Transparent border default mein */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* Image ko contain karne ke liye */
+}
+.user-avatar-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-avatar-button:hover,
+.user-avatar-button:focus-visible { /* Focus state ke liye bhi */
+  border-color: var(--primary-color); /* Hover/focus par primary color ka border */
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.3); /* Halki glow effect */
 }
 
-.add-lead-btn:hover {
-  background: #6e3dff; /* Slightly lighter purple */
-  transform: translateY(-2px);
-  box-shadow: var(--hover-effect);
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 12px); /* Avatar ke neeche thoda gap ke saath */
+  right: 0;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08); /* Thoda aur behtar shadow */
+  z-index: 1100;
+  width: 240px; /* Thoda चौड़ा dropdown */
+  padding: 6px 0; /* Dropdown ke liye vertical padding */
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(8px) scale(0.98); /* Animation ke liye initial state */
+  transform-origin: top right; /* Animation origin */
+  visibility: hidden;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out, visibility 0.15s ease-out;
+}
+.profile-dropdown.open { /* Jab dropdown khula ho */
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
 }
 
+.profile-dropdown-header {
+  padding: 10px 16px; /* Header padding */
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 6px; /* Header ke baad space */
+}
+.profile-dropdown-header .user-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem; /* 14.4px */
+  color: var(--text-color);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profile-dropdown-header .user-email {
+  margin: 2px 0 0;
+  font-size: 0.75rem; /* 12px */
+  color: var(--text-color);
+  opacity: 0.6; /* Thoda halka email */
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Icon aur text ke beech space */
+  width: 100%;
+  padding: 9px 16px; /* Item padding */
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.875rem; /* 14px */
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.profile-dropdown-item svg {
+  opacity: 0.6; /* Icon ki opacity */
+  width: 16px;
+  height: 16px;
+  transition: opacity 0.15s ease;
+}
+.profile-dropdown-item:hover {
+  background-color: var(--sidebar-hover-bg);
+  /* color: var(--primary-color); Agar hover par primary color text chahiye */
+}
+.profile-dropdown-item:hover svg {
+  opacity: 0.8;
+}
+.profile-dropdown-item.danger { /* Logout jaise items ke liye */
+  color: var(--danger-color);
+}
+.profile-dropdown-item.danger:hover {
+  background-color: rgba(var(--danger-color-rgb), 0.1);
+  color: var(--danger-color); /* Hover par bhi danger color */
+}
+.profile-dropdown-item.danger:hover svg {
+  color: var(--danger-color); /* SVG ka color bhi change karein */
+  opacity: 0.8;
+}
 /* Content Area */
 .content {
-  padding: 25px 30px;
   flex-grow: 1;
+  
 }
 
 /* Stats Grid */
@@ -1026,6 +1246,12 @@ body {
   opacity: 1;
   pointer-events: all;
 }
+.sidebar.fixed {
+  transform: translateX(0) !important;
+}
+.main-content.fixed-sidebar {
+  margin-left: var(--sidebar-width);
+}
 
 /* Responsive */
 @media (max-width: 1200px) {
@@ -1042,7 +1268,13 @@ body {
   .sidebar {
     transform: translateX(-100%);
   }
+    .sidebar:not(.fixed) {
+    transform: translateX(-100%);
+  }
   
+  .main-content:not(.fixed-sidebar) {
+    margin-left: 0;
+  }
   .sidebar.open {
     transform: translateX(0);
   }
@@ -1472,3 +1704,190 @@ body {
     font-weight: bold;
 }
 
+/* General Body Styles */
+.dashboard-body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fa;
+  padding: 20px;
+  color: #333;
+}
+
+/* Header Styles */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.dashboard-header h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.date-range {
+  background-color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+.edit-dashboard-btn {
+  background-color: #4a69bd;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+/* Card Styles */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.large-card {
+  grid-column: span 2;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+.card-header.no-border {
+  border-bottom: none;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+.card-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-total { font-size: 22px; font-weight: bold; }
+.revenue-total { color: #28a745; }
+
+/* Chart and Legend */
+.chart-and-legend { display: flex; align-items: center; gap: 20px; flex-grow: 1; }
+.chart-container { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+.legend { flex-grow: 1; display: flex; flex-direction: column; gap: 12px; }
+.legend-item { display: flex; align-items: center; font-size: 14px; }
+.legend-value { margin-left: auto; font-weight: bold; }
+.dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 10px; }
+.dot.blue { background-color: #36A2EB; }
+.dot.red-followup { background-color: #FF6384; }
+.dot.green { background-color: #4BC0C0; }
+.dot.dark-blue { background-color: #667eea; }
+
+/* Specific Card Content */
+.today-stats-btn { background-color: #e8f5e9; color: #28a745; border: 1px solid #a5d6a7; padding: 5px 10px; border-radius: 15px; font-size: 12px; cursor: pointer; }
+.whatsapp-official-content { display: flex; align-items: center; gap: 20px; }
+.info-grid { flex-grow: 1; display: grid; gap: 15px; }
+.info-grid.four-cols, .revenue-content { grid-template-columns: repeat(4, 1fr); }
+.info-box { background-color: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+.info-icon { font-size: 24px; margin-bottom: 8px; color: #888; }
+.info-box p { margin: 0 0 5px 0; font-size: 14px; color: #666; }
+.info-value { font-size: 18px; font-weight: bold; }
+.info-value.flagged { color: #dc3545; }
+.marketing-content { display: flex; flex-direction: column; gap: 15px; }
+.marketing-item { display: flex; align-items: center; gap: 15px; padding: 10px; border-radius: 6px; }
+.marketing-item.main-spent { background-color: #e7f3ff; border: 1px solid #cce4ff; }
+.marketing-item p { margin: 0; flex-grow: 1; }
+.marketing-item span { font-weight: bold; font-size: 16px; }
+.marketing-icon { font-size: 24px; padding: 8px; border-radius: 50%; color: white; }
+.blue-icon { background-color: #007bff; }
+.green-icon { background-color: #28a745; }
+.orange-icon { background-color: #fd7e14; }
+
+/* ----------- BOTTOM SECTION STYLES ----------- */
+.bottom-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.coming-soon { color: #999; font-weight: normal; font-size: 14px; }
+
+/* Leaderboard */
+.leaderboard-card { padding-bottom: 10px; }
+.leaderboard-grid { display: grid; grid-template-columns: 1fr; gap: 5px; }
+.leaderboard-header-row, .leaderboard-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+}
+.leaderboard-header-row {
+  background-color: #fffbeB;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #555;
+}
+.leaderboard-header-row div { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.leaderboard-row div:nth-child(2) { text-align: left; padding-left: 20px; }
+.rank-gold { color: #ffd700; font-size: 20px; }
+.rank-silver { color: #c0c0c0; font-size: 20px; }
+.rank-bronze { color: #cd7f32; font-size: 20px; }
+
+/* Webinar Section */
+.webinar-content { display: flex; align-items: center; gap: 20px; }
+.stat-box-grid { flex-grow: 1; display: grid; gap: 15px; grid-template-columns: repeat(4, 1fr); }
+.stat-box-grid.seven-cols { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.stat-box { background-color: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+.stat-icon { font-size: 24px; margin-bottom: 8px; color: #888; }
+.stat-icon.red { color: #dc3545; }
+.stat-icon.orange { color: #fd7e14; }
+.stat-icon.blue { color: #007bff; }
+.stat-icon.green { color: #28a745; }
+.stat-box p { margin: 0 0 5px 0; font-size: 14px; color: #666; }
+.stat-box span { font-size: 18px; font-weight: bold; }
+.red-text { color: #dc3545; }
+
+/* Funnel Chart */
+.funnel-container { width: 150px; display: flex; flex-direction: column; align-items: center; }
+.funnel-stage {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+.funnel-stage p { margin: 0; font-weight: bold; }
+.funnel-stage.red-funnel { background-color: #dc3545; clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); }
+.funnel-stage.orange-funnel { background-color: #fd7e14; clip-path: polygon(15% 0, 85% 0, 70% 100%, 30% 100%); margin-top: -1px; }
+.funnel-stage.green-funnel { background-color: #28a745; clip-path: polygon(30% 0, 70% 0, 55% 100%, 45% 100%); margin-top: -1px; }
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .large-card { grid-column: span 1; }
+  .revenue-content { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .dashboard-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .chart-and-legend, .whatsapp-official-content, .webinar-content { flex-direction: column; }
+  .funnel-container { margin-top: 20px; }
+}

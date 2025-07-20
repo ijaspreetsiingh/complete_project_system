@@ -1,0 +1,292 @@
+/* portfolioedit.css */
+
+/* Reset and Base Styles */
+.portfolio-edit-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Editor Container */
+.studio-editor {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Pages Container */
+.pages-container {
+  position: fixed !important;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Action Buttons */
+.action-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.action-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.action-button > svg {
+  font-size: 1.1rem;
+}
+
+.save-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.save-all-button {
+  background-color: #16a085;
+  color: white;
+}
+
+.ai-generate-button {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.refresh-button {
+  background-color: #f39c12;
+  color: white;
+}
+
+.download-button {
+  background-color: #27ae60;
+  color: white;
+}
+
+.back-button {
+  background-color: #c0392b;
+  color: white;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+}
+
+.ai-modal-content {
+  max-width: 550px;
+}
+
+/* AI Popup Specific Styles */
+.ai-popup-content h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.ai-popup-content p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.ai-options {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.ai-option {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-option:hover {
+  border-color: #8e44ad;
+  background: #f9f4fc;
+}
+
+.ai-option.selected {
+  border-color: #8e44ad;
+  background: #f2e8f9;
+  color: #8e44ad;
+  font-weight: bold;
+}
+
+.ai-option .option-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.description-section {
+  margin-top: 15px;
+}
+
+.description-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.description-section textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.ai-popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.ai-popup-buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ai-cancel-btn {
+  background-color: #eee;
+}
+
+.ai-submit-btn {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.ai-submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Template Selector Styles */
+.template-selector-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.template-card {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.template-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.template-card.selected {
+  border-color: #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.template-thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.template-info {
+  padding: 15px;
+}
+
+/* Loading State */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.portfolio-edit-container {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Ensure editor canvas takes full space */
+.gjs-cv-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
